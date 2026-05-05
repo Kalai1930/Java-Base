@@ -16,22 +16,9 @@ public class PracticeTest1 {
 		else {
 			System.out.println("The value is not in the given array");
 		}*/
-		//pt.removeDuplicates();
-		int i = 0;
-		int f = 1;
+		 pt.longestSubString();
 		
-		System.out.println(i);
-		System.out.println(f);
-		for(int c=2;c<10;c++) {
-			
-			 int s = i+f;
-			 i=f;
-			f = s;
-			
-			System.out.println(s);
 		
-			
-		}
 		
 		
 	}
@@ -72,18 +59,70 @@ public class PracticeTest1 {
 	
 	//Remove duplicates from the sorted array
 	public void removeDuplicates() {
-		int[] arr = {8,34,75,3,67,3,23,8,34};
+		int[] arr = {8,34,75,3,67,3,23,8,34,75};
 		
 		Arrays.sort(arr);
-		int i = 0;
-		int j = 1;
-		while(i < arr.length) {
-			if(arr[i] != arr[j]) {
-				System.out.println( arr[i]);
-				j++;
+		//int i = 0;
+		int j = 0;
+		int[] rmdup = new int[arr.length];
+		// 3,3,8,8,23,34,34,67,75,75
+		for(int i=0; i< arr.length-1;i++) {
+			if(arr[i] != arr[i+1]) {
+				rmdup[j++]=arr[i];
 			}
-			i++;
-			
 		}
+		rmdup[j++] = arr[arr.length-1];
+		// copyof method will set the new length to the array.
+		int[] uniqueArr = Arrays.copyOf(rmdup, j);
+		System.out.println(Arrays.toString(uniqueArr));	
+	}
+	public void nthLarge(int num) {
+		int[] arr = {8,34,75,3,67,3,23,8,34,75};
+		Arrays.sort(arr);
+		//int[] desc = new int[arr.length];
+		int j = 0;
+		int[] rmdup = new int[arr.length];
+		// 3,3,8,8,23,34,34,67,75,75
+		for(int i=0; i< arr.length-1;i++) {
+			if(arr[i] != arr[i+1]) {
+				rmdup[j++]=arr[i];
+			}
+		}
+		rmdup[j++] = arr[arr.length-1];
+		// copyof method will set the new length to the array.
+		int[] uniqueArr = Arrays.copyOf(rmdup, j);
+		int k=uniqueArr.length-1;
+		int[] descArr = new int[uniqueArr.length];
+		for(int i=0;i<descArr.length;i++) {
+			descArr[i]=uniqueArr[k--];
+		}
+		System.out.println(Arrays.toString(descArr));
+		System.out.println(descArr[num-1]);
+	}
+	
+	// Longest substring without repeating characters 
+	 
+	//INPUT     OUTPUT 
+	//java2novice   = a2novice 
+	//java_language_is_sweet = uage_is 
+	//java_java_java_java  = va_j, _jav 
+	//abcabcbb    = bca, abc, cab
+	
+	public void longestSubString() {
+		
+		String str="java2novice";
+		char[] splitStr = str.toCharArray();
+		
+		char[] unique = new char[splitStr.length];
+		int k=0;
+		for(int i=0;i<splitStr.length;i++) {
+			for(int j=0;j<splitStr.length;j++) {
+				if(splitStr[i] != splitStr[j]) {
+					
+					unique[k++]=splitStr[j];
+				}
+			}
+		}
+	
 	}
 }
